@@ -33,7 +33,7 @@ function SectionLabel({ text }) {
 
 export default function Home() {
   return (
-    <div className="pt-16 lg:pt-20">
+    <div className="pt-16 lg:pt-20 overflow-hidden">
       {/* ── Hero ─────────────────────────────────────────────── */}
       <Hero />
 
@@ -52,7 +52,7 @@ export default function Home() {
                   />
                 </div>
                 {/* Decorative badge */}
-                <div className="absolute -bottom-6 -right-6 bg-primaryGreen text-white rounded-2xl px-6 py-4 shadow-xl">
+                <div className="absolute -bottom-6 -right-4 bg-primaryGreen text-white rounded-2xl px-6 py-4 shadow-xl">
                   <p className="text-3xl font-bold">{aboutData.stats[0].value}</p>
                   <p className="text-sm font-medium text-white/85">{aboutData.stats[0].label}</p>
                 </div>

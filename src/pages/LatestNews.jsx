@@ -30,6 +30,8 @@ export default function LatestNews() {
     setOpenId(prev => prev === id ? null : id)
   }
 
+  
+
   return (
     <div className="pt-16 lg:pt-20">
       {/* Page Header */}
@@ -111,12 +113,6 @@ export default function LatestNews() {
                           By <span className="text-darkGreen font-medium">Gammun Communications Team</span>
                         </p>
                         <div className="flex gap-2">
-                            <button
-                              onClick={(e) => e.stopPropagation()}
-                              className="px-3 py-1 text-xs font-semibold border border-gray-200 rounded-full hover:bg-gray-50 transition-colors text-gray-500"
-                            >
-                              Share
-                            </button>
                         </div>
                       </div>
                     </div>
