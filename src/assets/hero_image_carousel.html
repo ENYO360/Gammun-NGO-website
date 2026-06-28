@@ -1,0 +1,175 @@
+
+<style>
+  .carousel-root { position: relative; width: 100%; height: 520px; overflow: hidden; border-radius: 12px; background: #111; font-family: var(--font-sans); }
+  @media (max-width: 600px) { .carousel-root { height: 420px; border-radius: 0; } }
+  .slide { position: absolute; inset: 0; opacity: 0; transition: opacity 0.9s cubic-bezier(0.4,0,0.2,1); pointer-events: none; }
+  .slide.active { opacity: 1; pointer-events: auto; }
+  .slide img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.06); transition: transform 6s ease-in-out; }
+  .slide.active img { transform: scale(1); }
+  .slide-overlay { position: absolute; inset: 0; background: linear-gradient(to right, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.35) 60%, transparent 100%); }
+  .slide-content { position: absolute; bottom: 0; left: 0; right: 0; padding: 2.5rem 2.5rem 2rem; }
+  @media (max-width: 600px) { .slide-content { padding: 1.25rem 1.25rem 1.5rem; } }
+  .slide-tag { display: inline-block; font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: #86efac; background: rgba(134,239,172,0.15); border: 1px solid rgba(134,239,172,0.35); padding: 4px 10px; border-radius: 20px; margin-bottom: 12px; opacity: 0; transform: translateY(14px); transition: opacity 0.5s 0.2s, transform 0.5s 0.2s; }
+  .slide-title { font-size: clamp(1.5rem, 4vw, 2.4rem); font-weight: 600; color: #fff; line-height: 1.2; margin: 0 0 10px; max-width: 480px; opacity: 0; transform: translateY(18px); transition: opacity 0.55s 0.32s, transform 0.55s 0.32s; font-family: var(--font-voice, Georgia, serif); }
+  .slide-desc { font-size: clamp(13px, 2.2vw, 15px); color: rgba(255,255,255,0.72); max-width: 420px; line-height: 1.6; margin: 0; opacity: 0; transform: translateY(14px); transition: opacity 0.5s 0.46s, transform 0.5s 0.46s; }
+  .slide.active .slide-tag, .slide.active .slide-title, .slide.active .slide-desc { opacity: 1; transform: translateY(0); }
+  .nav-bar { position: absolute; bottom: 1.5rem; right: 1.75rem; display: flex; align-items: center; gap: 10px; z-index: 10; }
+  @media (max-width: 600px) { .nav-bar { right: 1rem; bottom: 1rem; } }
+  .nav-dot { width: 28px; height: 3px; border-radius: 2px; background: rgba(255,255,255,0.3); cursor: pointer; transition: background 0.3s, width 0.3s; border: none; padding: 0; }
+  .nav-dot.active { width: 44px; background: #86efac; }
+  .progress-ring { position: absolute; top: 1.25rem; right: 1.5rem; z-index: 10; }
+  @media (max-width: 600px) { .progress-ring { top: 0.75rem; right: 0.75rem; } }
+  .progress-ring svg { display: block; }
+  .prog-track { fill: none; stroke: rgba(255,255,255,0.18); stroke-width: 2; }
+  .prog-fill { fill: none; stroke: #86efac; stroke-width: 2; stroke-linecap: round; transition: stroke-dashoffset 0.12s linear; transform-origin: center; transform: rotate(-90deg); }
+  .slide-counter { position: absolute; top: 1.35rem; left: 1.75rem; font-size: 12px; color: rgba(255,255,255,0.5); font-weight: 500; letter-spacing: 0.06em; z-index: 10; }
+  @media (max-width: 600px) { .slide-counter { left: 1rem; } }
+  .arrow-btn { position: absolute; top: 50%; transform: translateY(-50%); width: 38px; height: 38px; border-radius: 50%; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 10; transition: background 0.2s; }
+  .arrow-btn:hover { background: rgba(255,255,255,0.22); }
+  .arrow-btn.prev { left: 1rem; }
+  .arrow-btn.next { right: 1rem; }
+  @media (max-width: 600px) { .arrow-btn { display: none; } }
+</style>
+
+<h2 class="sr-only">Image carousel with four slides</h2>
+
+<div class="carousel-root" id="carousel">
+  <div class="slide-counter" id="counter">01 / 04</div>
+
+  <div class="slide active" id="slide-0">
+    <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=1400&q=80" alt="Mountain wilderness at sunrise" loading="eager" />
+    <div class="slide-overlay"></div>
+    <div class="slide-content">
+      <div class="slide-tag">Wilderness</div>
+      <h3 class="slide-title">Where the world breathes slowly</h3>
+      <p class="slide-desc">Remote peaks and untouched valleys — places that remind you how small and alive you can feel at once.</p>
+    </div>
+  </div>
+
+  <div class="slide" id="slide-1">
+    <img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=1400&q=80" alt="Ocean at dusk with warm light" loading="lazy" />
+    <div class="slide-overlay"></div>
+    <div class="slide-content">
+      <div class="slide-tag">Coastline</div>
+      <h3 class="slide-title">Tides that mark the day's end</h3>
+      <p class="slide-desc">The coast resets everything — the light shifts, the salt hits the air, and whatever followed you here stays on shore.</p>
+    </div>
+  </div>
+
+  <div class="slide" id="slide-2">
+    <img src="https://images.unsplash.com/photo-1448375240586-882707db888b?w=1400&q=80" alt="Dense forest with light filtering through trees" loading="lazy" />
+    <div class="slide-overlay"></div>
+    <div class="slide-content">
+      <div class="slide-tag">Forest</div>
+      <h3 class="slide-title">Ancient canopies, quiet floors</h3>
+      <p class="slide-desc">Beneath trees that have stood for centuries, time moves differently — measured in seasons, not minutes.</p>
+    </div>
+  </div>
+
+  <div class="slide" id="slide-3">
+    <img src="https://images.unsplash.com/photo-1509316785289-025f5b846b35?w=1400&q=80" alt="Desert landscape with red sand dunes" loading="lazy" />
+    <div class="slide-overlay"></div>
+    <div class="slide-content">
+      <div class="slide-tag">Desert</div>
+      <h3 class="slide-title">Silence that fills every direction</h3>
+      <p class="slide-desc">Vast and unhurried, the desert holds more life than it shows — and more stillness than most places allow.</p>
+    </div>
+  </div>
+
+  <div class="progress-ring">
+    <svg width="36" height="36" viewBox="0 0 36 36">
+      <circle class="prog-track" cx="18" cy="18" r="15"/>
+      <circle class="prog-fill" id="prog-fill" cx="18" cy="18" r="15"
+        stroke-dasharray="94.25"
+        stroke-dashoffset="94.25"/>
+    </svg>
+  </div>
+
+  <button class="arrow-btn prev" id="prev-btn" aria-label="Previous slide">
+    <i class="ti ti-chevron-left" aria-hidden="true" style="font-size:18px"></i>
+  </button>
+  <button class="arrow-btn next" id="next-btn" aria-label="Next slide">
+    <i class="ti ti-chevron-right" aria-hidden="true" style="font-size:18px"></i>
+  </button>
+
+  <div class="nav-bar" id="nav-bar">
+    <button class="nav-dot active" data-index="0" aria-label="Slide 1"></button>
+    <button class="nav-dot" data-index="1" aria-label="Slide 2"></button>
+    <button class="nav-dot" data-index="2" aria-label="Slide 3"></button>
+    <button class="nav-dot" data-index="3" aria-label="Slide 4"></button>
+  </div>
+</div>
+
+<script>
+  const DURATION = 5000;
+  const CIRCUMFERENCE = 94.25;
+  let current = 0;
+  let timer = null;
+  let startTime = null;
+  let rafId = null;
+  let paused = false;
+  const total = 4;
+
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  const dots = Array.from(document.querySelectorAll('.nav-dot'));
+  const counter = document.getElementById('counter');
+  const progFill = document.getElementById('prog-fill');
+
+  function goTo(index) {
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current = (index + total) % total;
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
+    counter.textContent = String(current + 1).padStart(2, '0') + ' / 0' + total;
+    resetTimer();
+  }
+
+  function resetTimer() {
+    clearTimeout(timer);
+    cancelAnimationFrame(rafId);
+    startTime = performance.now();
+    progFill.style.strokeDashoffset = CIRCUMFERENCE;
+    if (!paused) tick();
+  }
+
+  function tick() {
+    rafId = requestAnimationFrame((now) => {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / DURATION, 1);
+      progFill.style.strokeDashoffset = CIRCUMFERENCE * (1 - progress);
+      if (progress < 1) {
+        tick();
+      } else {
+        goTo(current + 1);
+      }
+    });
+  }
+
+  document.getElementById('prev-btn').addEventListener('click', () => goTo(current - 1));
+  document.getElementById('next-btn').addEventListener('click', () => goTo(current + 1));
+
+  dots.forEach(dot => {
+    dot.addEventListener('click', () => goTo(parseInt(dot.dataset.index)));
+  });
+
+  const carousel = document.getElementById('carousel');
+  carousel.addEventListener('mouseenter', () => {
+    paused = true;
+    cancelAnimationFrame(rafId);
+  });
+  carousel.addEventListener('mouseleave', () => {
+    paused = false;
+    startTime = performance.now() - (parseFloat(CIRCUMFERENCE - parseFloat(progFill.style.strokeDashoffset || CIRCUMFERENCE)) / CIRCUMFERENCE * DURATION);
+    tick();
+  });
+
+  let touchStartX = 0;
+  carousel.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+  carousel.addEventListener('touchend', e => {
+    const diff = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 40) goTo(diff > 0 ? current + 1 : current - 1);
+  });
+
+  resetTimer();
+</script>
