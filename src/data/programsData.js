@@ -31,6 +31,7 @@
       color: '',
     },
 */
+import Icon from '../assets/gammun-logo.png'
 
 export const programsData = [
   {
@@ -91,9 +92,9 @@ export const programsData = [
     category: 'Protection & Health',
     year: '06 February, 2025',
     images: [
-      '',
-      '',
-      '',
+      Icon,
+      Icon,
+      Icon,
     ],
     captions: [
       'Stakeholders from the Kano State Ministry of Health, civil society, and media gathered for the quarterly review.',

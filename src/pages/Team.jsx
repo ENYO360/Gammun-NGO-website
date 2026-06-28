@@ -82,11 +82,6 @@ export default function Team() {
             ))}
           </div>
 
-          <AnimSection>
-            <div className="text-center mt-12">
-              <p className="text-gray-500 text-sm">Hover over a card to read the team member's biography.</p>
-            </div>
-          </AnimSection>
         </div>
       </div>
 

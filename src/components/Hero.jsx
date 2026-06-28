@@ -125,7 +125,7 @@ export default function Hero() {
 
   return (
     <section
-      className="relative w-full h-[520px] md:h-[680px] overflow-hidden bg-black"
+      className="relative w-full h-[420px] md:h-[680px] overflow-hidden bg-black"
       aria-label="Image carousel"
       onMouseEnter={handlePause}
       onMouseLeave={handleResume}

@@ -4,6 +4,8 @@
 //  to a news article. id, date, and image[2] are preserved.
 // ============================================================
 
+import Icon from '../assets/gammun-logo.png'
+
 export const newsData = [
   {
     id: 20260520,
@@ -43,7 +45,7 @@ export const newsData = [
     date: '06 February, 2025',
     time: '8:00 AM',
     category: 'Protection & Health',
-    image: '',
+    image: Icon,
     body: [
       'GAMMUN and the Association of People Living with Hypertension (APLWH) co-hosted a one-day Quarterly Immersion Meeting in Kano, bringing together a broad coalition of government agencies, health institutions, media professionals, and civil society organizations to review progress and align on the state\'s hypertension control efforts.',
       'Media fellows and civil society organizations participated alongside government stakeholders to ensure coordinated communication strategies and robust accountability mechanisms for hypertension programming across the state.',

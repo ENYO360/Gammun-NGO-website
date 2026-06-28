@@ -111,27 +111,107 @@ export default function Home() {
       </section>
 
       {/* ── Section 3: Core Values ───────────────────────────── */}
-      <section className="py-20 lg:py-28 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative py-24 bg-gradient-to-b from-white via-gray-50 to-white overflow-hidden">
+
+        {/* Background decoration */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-0 left-0 w-72 h-72 bg-primaryGreen rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 right-0 w-72 h-72 bg-primaryBlue rounded-full blur-3xl"></div>
+        </div>
+
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
           <AnimSection>
-            <div className="text-center mb-14">
+            <div className="text-center mb-16">
               <SectionLabel text="What We Stand For" />
-              <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mt-2">Our Core Values</h2>
-              <p className="text-gray-500 mt-3 max-w-xl mx-auto">The principles that guide every decision, program, and partnership we make.</p>
+
+              <h2 className="mt-3 text-4xl lg:text-5xl font-extrabold text-gray-900">
+                Our Core Values
+              </h2>
+
+              <p className="mt-5 text-lg text-gray-500 max-w-2xl mx-auto">
+                Every decision we make and every community we serve is guided by these
+                enduring principles.
+              </p>
             </div>
           </AnimSection>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {coreValuesData.map((v, i) => (
-              <AnimSection key={i} delay={i * 80}>
-                <div className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border border-gray-100 h-full">
-                  <span className="text-4xl mb-4 block">{v.icon}</span>
-                  <h3 className="text-lg font-bold text-gray-900 mb-2">{v.title}</h3>
-                  <p className="text-gray-500 text-sm leading-relaxed">{v.description}</p>
-                </div>
-              </AnimSection>
-            ))}
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+
+            {coreValuesData.map((value, index) => {
+
+              const Icon = value.icon;
+
+              return (
+                <AnimSection key={index} delay={index * 70}>
+
+                  <div
+                    className="
+                    flex flex-col
+                    items-center
+                    group
+                    relative
+                    h-full
+                    overflow-hidden
+                    rounded-3xl
+                    border
+                    border-gray-200
+                    bg-white/80
+                    backdrop-blur-sm
+                    p-8
+                    shadow-sm
+                    transition-all
+                    duration-500
+                    hover:-translate-y-2
+                    hover:shadow-2xl
+                    hover:border-primaryGreen/40
+                  "
+                  >
+
+                    {/* Accent Line */}
+                    <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-primaryGreen to-primaryBlue scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500"></div>
+
+                    {/* Icon */}
+                    <div
+                      className="
+                mb-6
+                inline-flex
+                h-16
+                w-16
+                items-center
+                justify-center
+                rounded-2xl
+                bg-primaryBlue/10
+                text-primaryBlue
+                text-3xl
+                transition-all
+                duration-300
+                group-hover:bg-primaryBlue
+                group-hover:text-white
+                group-hover:rotate-6
+              "
+                    >
+                      <Icon />
+                    </div>
+
+                    <h3 className="text-center text-xl font-bold text-gray-900 mb-3">
+                      {value.title}
+                    </h3>
+
+                    <p className="text-center text-gray-600 leading-7 text-[15px]">
+                      {value.description}
+                    </p>
+
+                  </div>
+
+                </AnimSection>
+              );
+            })}
+
           </div>
+
         </div>
+
       </section>
 
       {/* ── Section 4: Thematic Areas ───────────────────────── */}

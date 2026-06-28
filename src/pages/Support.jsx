@@ -229,7 +229,7 @@ export default function Support() {
 
             <div className="flex justify-center flex-wrap gap-5 mt-10">
               <a
-                href="https://facebook.com/"
+                href="https://web.facebook.com/gammunorg"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-14 h-14 rounded-full bg-white shadow-md hover:bg-primaryGreen hover:text-white transition-all duration-300 flex items-center justify-center text-2xl text-primaryGreen"
@@ -238,7 +238,7 @@ export default function Support() {
               </a>
 
               <a
-                href="https://instagram.com/"
+                href="https://www.instagram.com/gammunngo?fbclid=IwY2xjawSsxiZleHRuA2FlbQIxMABicmlkETJyS1FvZ1I3WTVMOXYwV2ZZc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHtDcbSrk5POmNbJWdzwS3Da1zN1MlSSk9tJFyc6T5y3aocwS8sFOrZC2MpT9_aem_OjmlMHZYapW1yLx7uK6Edw"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-14 h-14 rounded-full bg-white shadow-md hover:bg-primaryGreen hover:text-white transition-all duration-300 flex items-center justify-center text-2xl text-primaryGreen"
@@ -247,7 +247,7 @@ export default function Support() {
               </a>
 
               <a
-                href="https://x.com/"
+                href="https://x.com/GammunNgo?s=20"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-14 h-14 rounded-full bg-white shadow-md hover:bg-primaryGreen hover:text-white transition-all duration-300 flex items-center justify-center text-2xl text-primaryGreen"
@@ -256,7 +256,7 @@ export default function Support() {
               </a>
 
               <a
-                href="https://linkedin.com/"
+                href="https://www.linkedin.com/in/gammun-centre-for-care-and-development-nigeria-gccdn-6004a3405/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-14 h-14 rounded-full bg-white shadow-md hover:bg-primaryGreen hover:text-white transition-all duration-300 flex items-center justify-center text-2xl text-primaryGreen"
@@ -265,7 +265,7 @@ export default function Support() {
               </a>
 
               <a
-                href="https://wa.me/2348000000000"
+                href="https://wa.me/2347032467191"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-14 h-14 rounded-full bg-white shadow-md hover:bg-primaryGreen hover:text-white transition-all duration-300 flex items-center justify-center text-2xl text-primaryGreen"

@@ -30,7 +30,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3 group">
-            <img src={Logo} alt="GAMMUN Logo" className="w-16  group-hover:scale-105 transition-transform" />
+            <img src={Logo} alt="GAMMUN Logo" className="w-14 md:w-16  group-hover:scale-105 transition-transform" />
           </Link>
 
           {/* Desktop Links */}

@@ -1,6 +1,16 @@
 // ============================================================
 //  HOME PAGE DATA -- Edit freely; no coding knowledge required
 // ============================================================
+import { FaPeopleGroup } from "react-icons/fa6";
+import {
+  FaHandsHelping,
+  FaHandshake,
+  FaClipboardCheck,
+  FaGlobeAfrica,
+  FaShieldAlt,
+  FaUsers,
+  FaHeart,
+} from "react-icons/fa";
 
 // Image for the "About Us" section
 import AboutImg from "../assets/aboutGammun-img.jpg";
@@ -58,52 +68,52 @@ export const visionMissionData = {
 // CORE VALUES
 export const coreValuesData = [
   {
-    icon: '🙏',
-    title: 'Humility',
+    icon: FaHandsHelping,
+    title: "Humility",
     description:
-      'We serve with humility, placing the needs of communities first and valuing every individual with dignity.',
+      "We serve with humility, placing the needs of communities first and valuing every individual with dignity.",
   },
   {
-    icon: '🤝',
-    title: 'Unity',
+    icon: FaPeopleGroup,
+    title: "Unity",
     description:
-      'We foster collaboration and solidarity, working together to achieve lasting impact in the communities we serve.',
+      "We foster collaboration and solidarity, working together to achieve lasting impact in the communities we serve.",
   },
   {
-    icon: '🫶',
-    title: 'Mutual Respect',
+    icon: FaHandshake,
+    title: "Mutual Respect",
     description:
-      'We treat everyone with fairness, dignity, and respect, embracing diversity and valuing every voice.',
+      "We treat everyone with fairness, dignity, and respect, embracing diversity and valuing every voice.",
   },
   {
-    icon: '📋',
-    title: 'Accountability',
+    icon: FaClipboardCheck,
+    title: "Accountability",
     description:
-      'We are responsible stewards of the resources entrusted to us, ensuring transparency, integrity, and measurable results.',
+      "We are responsible stewards of the resources entrusted to us, ensuring transparency, integrity, and measurable results.",
   },
   {
-    icon: '🌐',
-    title: 'Networking & Partnership',
+    icon: FaGlobeAfrica,
+    title: "Networking & Partnership",
     description:
-      'We build strong partnerships with communities, governments, and development organizations to maximize our collective impact.',
+      "We build strong partnerships with communities, governments, and development organizations to maximize our collective impact.",
   },
   {
-    icon: '🛡️',
-    title: 'Integrity',
+    icon: FaShieldAlt,
+    title: "Integrity",
     description:
-      'We uphold honesty, ethical conduct, and professionalism in all our actions and decisions.',
+      "We uphold honesty, ethical conduct, and professionalism in all our actions and decisions.",
   },
   {
-    icon: '👥',
-    title: 'Team Spirit',
+    icon: FaUsers,
+    title: "Team Spirit",
     description:
-      'We believe teamwork, trust, and shared responsibility are essential to delivering meaningful and sustainable change.',
+      "We believe teamwork, trust, and shared responsibility are essential to delivering meaningful and sustainable change.",
   },
   {
-    icon: '💙',
-    title: 'You and I',
+    icon: FaHeart,
+    title: "You and I",
     description:
-      'We believe that lasting change happens when everyone works together—because together, you and I can transform lives and communities.',
+      "We believe lasting change happens when everyone works together to transform lives and communities.",
   },
 ];
 

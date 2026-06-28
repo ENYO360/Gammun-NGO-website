@@ -83,7 +83,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-gray-800 mt-12 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-gray-500">
-          <p>© {new Date().getFullYear()} Gammun NGO. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Gammun GCCDN. All rights reserved.</p>
         </div>
       </div>
     </footer>

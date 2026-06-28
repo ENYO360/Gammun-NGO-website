@@ -1,12 +1,24 @@
 // ============================================================
 //  TEAM DATA -- Edit freely; no coding knowledge required
 // ============================================================
+
+/* FORMAT
+    {
+    id: ,
+    name: '',
+    portfolio: '',
+    bio: '',
+    image: ,
+    email: '',
+  },
+*/
 import Nazir from '../assets/Nazir R. Ali.jpg'
 import Fatahiyya from '../assets/Fatahiyya Ali Lawal.jpg'
 import Dorothy from '../assets/Dorothy Yieju.jpg'
 import Suleiman from '../assets/Suleiman H. Abdullahi.jpg'
 import Barrira from '../assets/Barira Aminu Tahir.jpg'
 import Tulari from '../assets/Tulari Tine.jpg'
+import Samuel from '../assets/Samuel Ogbanje Ikwuoche.jpg'
 
 export const teamData = [
   {
@@ -47,6 +59,14 @@ export const teamData = [
     portfolio: 'Senior M&E Advisor',
     bio: '',
     image: Dorothy,
+    email: 'gammunorg@gmail.com',
+  },
+  {
+    id: 6,
+    name: 'Samuel Ogbanje Ikwuoche',
+    portfolio: 'IT Specialist',
+    bio: '',
+    image: Samuel,
     email: 'gammunorg@gmail.com',
   },
 ]

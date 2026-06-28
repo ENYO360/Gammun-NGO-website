@@ -24,7 +24,11 @@ function SectionLabel({ text }) {
 }
 
 export default function LatestNews() {
-  const [selected, setSelected] = useState(newsData[0])
+  const [openId, setOpenId] = useState(null)
+
+  const handleToggle = (id) => {
+    setOpenId(prev => prev === id ? null : id)
+  }
 
   return (
     <div className="pt-16 lg:pt-20">
@@ -42,91 +46,85 @@ export default function LatestNews() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Sidebar: news list */}
-          <div className="lg:col-span-1 space-y-3">
-            <h2 className="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-4">All Stories</h2>
-            {newsData.map((item, i) => (
+        {/* 2-col on desktop, 1-col on mobile */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+          {newsData.map((item, i) => {
+            const isOpen = openId === item.id
+
+            return (
               <AnimSection key={item.id} delay={i * 60}>
-                <button
-                  onClick={() => setSelected(item)}
-                  className={`w-full text-left p-4 rounded-xl border transition-all duration-200 group ${
-                    selected.id === item.id
-                      ? 'bg-primaryGreen/5 border-primaryGreen shadow-sm'
-                      : 'bg-white border-gray-100 hover:border-gray-200 hover:shadow-sm'
-                  }`}
+                <div
+                  onClick={() => handleToggle(item.id)}
+                  className={`cursor-pointer rounded-2xl border overflow-hidden transition-all duration-200 ${isOpen
+                      ? 'border-primaryGreen shadow-md'
+                      : 'border-gray-100 hover:border-gray-200 hover:shadow-sm bg-white'
+                    }`}
                 >
-                  <div className="aspect-video rounded-lg overflow-hidden mb-3">
-                    <img src={item.image} alt={item.headline} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                  </div>
-                  <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${selected.id === item.id ? 'bg-primaryGreen/10 text-primaryGreen' : 'bg-gray-100 text-gray-500'}`}>
-                    {item.category}
-                  </span>
-                  <h3 className={`mt-2 text-sm font-semibold leading-snug ${selected.id === item.id ? 'text-darkGreen' : 'text-gray-800'}`}>
-                    {item.headline}
-                  </h3>
-                  <p className="text-xs text-gray-400 mt-1">{item.date} · {item.time}</p>
-                </button>
-              </AnimSection>
-            ))}
-          </div>
-
-          {/* Main article */}
-          <div className="lg:col-span-2">
-            <AnimSection key={selected.id}>
-              <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
-                {/* Hero image */}
-                <div className="aspect-video w-full overflow-hidden">
-                  <img
-                    src={selected.image}
-                    alt={selected.headline}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-
-                <div className="p-8">
-                  {/* Meta */}
-                  <div className="flex items-center gap-3 flex-wrap mb-4">
-                    <span className="bg-primaryGreen/10 text-primaryGreen text-xs font-semibold px-3 py-1 rounded-full">
-                      {selected.category}
-                    </span>
-                    <span className="text-xs text-gray-400">{selected.date}</span>
-                    <span className="text-xs text-gray-300">·</span>
-                    <span className="text-xs text-gray-400">{selected.time}</span>
+                  {/* Thumbnail */}
+                  <div className="aspect-video w-full overflow-hidden">
+                    <img
+                      src={item.image}
+                      alt={item.headline}
+                      className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                    />
                   </div>
 
-                  {/* Headline */}
-                  <h1 className="text-2xl lg:text-3xl font-bold text-gray-900 leading-tight mb-6">
-                    {selected.headline}
-                  </h1>
-
-                  {/* Divider */}
-                  <div className="w-16 h-1 bg-primaryGreen rounded-full mb-6" />
-
-                  {/* Body paragraphs */}
-                  <div className="space-y-5">
-                    {selected.body.map((para, i) => (
-                      <p key={i} className="text-gray-600 leading-relaxed text-base">
-                        {para}
-                      </p>
-                    ))}
+                  {/* Card header */}
+                  <div className="p-5 bg-white">
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="flex-1">
+                        <span className={`text-xs font-semibold px-2.5 py-0.5 rounded-full ${isOpen ? 'bg-primaryGreen/10 text-primaryGreen' : 'bg-gray-100 text-gray-500'
+                          }`}>
+                          {item.category}
+                        </span>
+                        <h3 className={`mt-2 text-sm font-semibold leading-snug ${isOpen ? 'text-darkGreen' : 'text-gray-800'
+                          }`}>
+                          {item.headline}
+                        </h3>
+                        <p className="text-xs text-gray-400 mt-1">{item.date} · {item.time}</p>
+                      </div>
+                      {/* Chevron */}
+                      <svg
+                        className={`w-4 h-4 mt-1 flex-shrink-0 text-gray-400 transition-transform duration-300 ${isOpen ? 'rotate-180 text-primaryGreen' : ''
+                          }`}
+                        fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </div>
                   </div>
 
-                  {/* Footer */}
-                  <div className="mt-10 pt-6 border-t border-gray-100 flex items-center justify-between flex-wrap gap-4">
-                    <p className="text-sm text-gray-400">Published by <span className="text-darkGreen font-medium">Gammun Communications Team</span></p>
-                    <div className="flex gap-2">
-                      {['Share', 'Bookmark'].map((a) => (
-                        <button key={a} className="px-4 py-2 text-xs font-semibold border border-gray-200 rounded-full hover:bg-gray-50 transition-colors text-gray-500">
-                          {a}
-                        </button>
+                  {/* Expandable body */}
+                  <div
+                    className={`overflow-hidden transition-all duration-400 ease-in-out bg-white border-t border-gray-100 ${isOpen ? 'max-h-[600px] opacity-100' : 'max-h-0 opacity-0 border-t-0'
+                      }`}
+                  >
+                    <div className="px-5 pb-6 pt-4 space-y-4 max-h-[400px] overflow-y-auto">
+                      {item.body.map((para, j) => (
+                        <p key={j} className="text-gray-600 leading-relaxed text-sm">
+                          {para}
+                        </p>
                       ))}
+
+                      <div className="pt-4 border-t border-gray-100 flex items-center justify-between flex-wrap gap-3">
+                        <p className="text-xs text-gray-400">
+                          By <span className="text-darkGreen font-medium">Gammun Communications Team</span>
+                        </p>
+                        <div className="flex gap-2">
+                            <button
+                              onClick={(e) => e.stopPropagation()}
+                              className="px-3 py-1 text-xs font-semibold border border-gray-200 rounded-full hover:bg-gray-50 transition-colors text-gray-500"
+                            >
+                              Share
+                            </button>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </AnimSection>
-          </div>
+              </AnimSection>
+            )
+          })}
         </div>
       </div>
     </div>
