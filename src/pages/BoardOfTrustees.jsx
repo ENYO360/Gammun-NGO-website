@@ -23,11 +23,9 @@ function SectionLabel({ text }) {
 }
 
 const roleColors = {
-  'Board Chair': 'bg-primaryGreen text-white',
-  'Vice Chair': 'bg-darkGreen text-white',
-  'Treasurer': 'bg-primaryBlue text-white',
+  'Board Chairman': 'bg-primaryGreen text-white',
   'Board Secretary': 'bg-darkBlue text-white',
-  'Trustee': 'bg-gray-100 text-gray-700',
+  'Staff Representative': 'bg-gray-100 text-gray-700',
 }
 
 export default function BoardOfTrustees() {
@@ -66,7 +64,7 @@ export default function BoardOfTrustees() {
           </AnimSection>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-14">
-            {boardData.filter(m => ['Board Chair', 'Vice Chair'].includes(m.title)).map((member, i) => (
+            {boardData.filter(m => ['Board Chairman', 'Board Secretary', 'Staff Representative'].includes(m.title)).map((member, i) => (
               <AnimSection key={member.id} delay={i * 100}>
                 <div className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col sm:flex-row">
                   <div className="w-full sm:w-44 h-52 sm:h-auto shrink-0 overflow-hidden">
@@ -90,7 +88,7 @@ export default function BoardOfTrustees() {
           </AnimSection>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {boardData.filter(m => !['Board Chair', 'Vice Chair'].includes(m.title)).map((member, i) => (
+            {boardData.filter(m => !['Board Chairman', 'Board Secretary', 'Staff Representative'].includes(m.title)).map((member, i) => (
               <AnimSection key={member.id} delay={i * 80}>
                 <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border border-gray-100 group">
                   <div className="h-56 overflow-hidden relative">
@@ -121,14 +119,8 @@ export default function BoardOfTrustees() {
           <div className="max-w-3xl mx-auto px-4 text-center">
             <h2 className="text-2xl font-bold mb-4">Committed to Good Governance</h2>
             <p className="text-white/75 leading-relaxed mb-6">
-              Gammun adheres to the highest standards of nonprofit governance, transparency, and accountability. Our annual reports and audited financial statements are available on request.
+              Gammun adheres to the highest standards of nonprofit governance, transparency, and accountability.
             </p>
-            <a
-              href="mailto:info@gammun.org"
-              className="inline-block px-8 py-3 bg-primaryGreen text-white font-semibold rounded-full hover:bg-white hover:text-darkGreen transition-colors shadow-md"
-            >
-              Request Annual Report
-            </a>
           </div>
         </AnimSection>
       </div>

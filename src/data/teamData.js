@@ -20,6 +20,7 @@ import Barrira from '../assets/Barira Aminu Tahir.jpg'
 import Tulari from '../assets/Tulari Tine.jpg'
 import Samuel from '../assets/Samuel Ogbanje Ikwuoche.jpg'
 
+
 export const teamData = [
   {
     id: 1,
@@ -47,6 +48,14 @@ export const teamData = [
   },
   {
     id: 4,
+    name: 'Fatahiyya Ali Lawal',
+    portfolio: 'Program Manager',
+    bio: '',
+    image: Fatahiyya,
+    email: 'gammunorg@gmail.com',
+  },
+  {
+    id: 5,
     name: 'Suleiman H. Abdullahi',
     portfolio: 'Media and Communications Expert',
     bio: '',
@@ -54,7 +63,7 @@ export const teamData = [
     email: 'gammunorg@gmail.com',
   },
   {
-    id: 5,
+    id: 6,
     name: 'Dorothy Yieju',
     portfolio: 'Senior M&E Advisor',
     bio: '',
@@ -62,7 +71,7 @@ export const teamData = [
     email: 'gammunorg@gmail.com',
   },
   {
-    id: 6,
+    id: 7,
     name: 'Samuel Ogbanje Ikwuoche',
     portfolio: 'IT Specialist',
     bio: '',

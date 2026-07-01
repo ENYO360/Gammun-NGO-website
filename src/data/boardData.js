@@ -1,55 +1,44 @@
 // ============================================================
 //  BOARD OF TRUSTEES DATA -- Edit freely; no coding knowledge required
 // ============================================================
+import RevEzekiel from '../assets/Rev. Ezekiel Dachomo.jpg'
+import Tulari from '../assets/Tulari Tine.jpg'
+
 
 export const boardData = [
   {
     id: 1,
-    name: 'Prof. Adaeze Nwosu',
-    title: 'Board Chair',
-    affiliation: 'Professor of Global Health, University of Nigeria, Nsukka',
-    image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=400&q=80',
+    name: 'Rev. Ezekiel Dachomo Bwede',
+    title: 'Board Chairman',
+    affiliation: '',
+    image: RevEzekiel,
   },
   {
     id: 2,
-    name: 'Alhaji Suleiman Bello',
-    title: 'Vice Chair',
-    affiliation: 'Former Director-General, National Agency for the Prohibition of Trafficking in Persons (NAPTIP)',
-    image: 'https://images.unsplash.com/photo-1566492031773-4f4e44671857?w=400&q=80',
+    name: 'Ali Nankham',
+    title: 'Board Secretary',
+    affiliation: '',
+    image: ""
   },
   {
     id: 3,
-    name: 'Mrs. Chidinma Obiora',
-    title: 'Treasurer',
-    affiliation: 'Partner, Obiora & Associates Chartered Accountants',
-    image: '',
+    name: 'Tulari Tine',
+    title: 'Staff Representative',
+    affiliation: '',
+    image: Tulari,
   },
   {
     id: 4,
-    name: 'Dr. Kehinde Adeyemi',
-    title: 'Board Secretary',
-    affiliation: 'Legal Counsel & Human Rights Advocate, Lagos High Court Bar',
-    image: 'https://images.unsplash.com/photo-1519345182560-3f2917c472ef?w=400&q=80',
-  },
-  {
-    id: 5,
-    name: 'Engr. Musa Ibrahim Danjuma',
-    title: 'Trustee',
-    affiliation: 'Chief Executive, Danjuma Infrastructure Group; Disability Inclusion Champion',
-    image: 'https://images.unsplash.com/photo-1463453091185-61582044d556?w=400&q=80',
-  },
-  {
-    id: 6,
-    name: 'Senator (Rtd.) Grace Onyekachi',
-    title: 'Trustee',
-    affiliation: 'Former Senator, Ebonyi South; Founding Patron, Women in Leadership Africa',
+    name: 'Musa Iliya',
+    title: 'Member',
+    affiliation: '',
     image: '',
   },
   {
-    id: 7,
-    name: 'Dr. Abdullahi Rimi',
-    title: 'Trustee',
-    affiliation: 'Medical Director, Federal Medical Centre Katsina; Public Health Specialist',
+    id: 5,
+    name: 'Tabitha ismail Bichi',
+    title: 'Member',
+    affiliation: '',
     image: '',
   },
 ]

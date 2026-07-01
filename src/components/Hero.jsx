@@ -3,6 +3,7 @@ import HeroImg1 from "../assets/heroImg-1.jpg";
 import HeroImg2 from "../assets/heroImg-2.jpg";
 import HeroImg3 from "../assets/heroImg-3.jpg";
 import HeroImg4 from "../assets/heroImg-4.jpg";
+import HeroImg5 from "../assets/heroImg-5.jpg";
 
 // ─────────────────────────────────────────────────────────────────────────────
 //  HERO SLIDES — Edit titles, descriptions, tags, and image paths here.
@@ -35,6 +36,13 @@ const slides = [
     tag: "Community Impact",
     desc: "Driving community health awareness through impactful sensitization campaigns — because saving lives is our passion.",
     image: HeroImg4,
+    alt: "Promoting Health, Transforming Lives",
+  },
+  {
+    title: "Running Hypertension Advocacy Programs",
+    tag: "Advocacy",
+    desc: "Educating the people on the risk, symptoms of hypertension and possible control methods.",
+    image: HeroImg5,
     alt: "Promoting Health, Transforming Lives",
   },
 ];

@@ -1,13 +1,20 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { supportTilesData, contactMethodsData, partnerLogos } from '../data/supportData'
 import useScrollAnimation from '../hooks/useScrollAnimation'
+import emailjs from '@emailjs/browser';
+import { FaCheckCircle, FaExclamationCircle } from "react-icons/fa";
 import {
   FaFacebookF,
   FaInstagram,
   FaLinkedinIn,
   FaWhatsapp,
   FaXTwitter,
+  FaSpinner,
 } from "react-icons/fa6";
+
+const EMAILJS_SERVICE_ID = 'Gammun_NGO'
+const EMAILJS_TEMPLATE_ID = 'template_qhds8kh'
+const EMAILJS_PUBLIC_KEY = 'uUBJ2gD4Oe9FK68BH'
 
 function AnimSection({ children, delay = 0, direction = 'up' }) {
   const { ref, visible } = useScrollAnimation()
@@ -37,11 +44,33 @@ function SectionLabel({ text, light = false }) {
 
 export default function Support() {
   const [form, setForm] = useState({ name: '', email: '', type: 'donation', message: '' })
-  const [sent, setSent] = useState(false)
 
-  const handleSubmit = (e) => {
+  const formRef = useRef(null)
+
+  const [status, setStatus] = useState('idle') // idle | sending | success | error
+
+  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value })
+
+  const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState(null);
+
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    setSent(true)
+    setStatus('sending')
+    try {
+      await emailjs.sendForm(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        formRef.current,
+        EMAILJS_PUBLIC_KEY
+      )
+      setStatus('success')
+      setForm({ from_name: '', from_email: '', support_type: 'donation', message: '' })
+    } catch (err) {
+      console.error('EmailJS error:', err)
+      setStatus('error')
+    }
   }
 
   return (
@@ -130,57 +159,79 @@ export default function Support() {
       </div>
 
       {/* Contact Form */}
-      <div className="py-20 bg-white">
+      <div className="py-20 bg-gray-50">
         <div className="max-w-2xl mx-auto px-4 sm:px-6">
           <AnimSection>
             <div className="text-center mb-10">
-              <SectionLabel text="Partnership Enquiry" />
-              <h2 className="text-3xl font-bold text-gray-900 mt-2">Send Us a Message</h2>
+              <SectionLabel text="Send a Message" />
+              <h2 className="text-3xl font-bold text-gray-900 mt-2">We'd Love to Hear from You</h2>
+              <p className="text-gray-500 mt-2 text-sm">
+                Fill the form and we'll get back to you within 2 business days.
+              </p>
             </div>
           </AnimSection>
 
-          {sent ? (
-            <AnimSection>
+          <AnimSection delay={100}>
+            {status === 'success' ? (
               <div className="bg-primaryGreen/10 border border-primaryGreen rounded-2xl p-10 text-center">
-                <div className="text-5xl mb-4">✅</div>
-                <h3 className="text-xl font-bold text-darkGreen mb-2">Message Received!</h3>
-                <p className="text-gray-600">Thank you for reaching out. A member of our partnerships team will respond within 2 business days.</p>
+                <FaCheckCircle className="text-primaryGreen text-5xl mx-auto mb-4" />
+                <h3 className="text-xl font-bold text-darkGreen mb-2">Message Sent!</h3>
+                <p className="text-gray-600">
+                  Thank you for reaching out. A member of our team will respond within 24 hours.
+                </p>
+                <button
+                  onClick={() => setStatus('idle')}
+                  className="mt-6 px-6 py-2.5 rounded-xl bg-primaryGreen text-white text-sm font-semibold hover:bg-darkGreen transition-colors"
+                >
+                  Send Another Message
+                </button>
               </div>
-            </AnimSection>
-          ) : (
-            <AnimSection delay={100}>
-              <form onSubmit={handleSubmit} className="bg-gray-50 rounded-2xl p-8 space-y-5 border border-gray-100 shadow-sm">
+            ) : (
+              <form
+                ref={formRef}
+                onSubmit={handleSubmit}
+                className="bg-white rounded-2xl p-8 space-y-5 border border-gray-100 shadow-sm"
+              >
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-1.5">Full Name</label>
+                    <label className="block text-sm font-semibold text-gray-700 mb-1.5">
+                      Full Name
+                    </label>
                     <input
                       type="text"
+                      name="from_name"
                       required
-                      value={form.name}
-                      onChange={e => setForm({ ...form, name: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primaryGreen bg-white text-sm"
+                      value={form.from_name}
+                      onChange={handleChange}
                       placeholder="Your full name"
+                      className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primaryGreen bg-gray-50 text-sm"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-1.5">Email Address</label>
+                    <label className="block text-sm font-semibold text-gray-700 mb-1.5">
+                      Email Address
+                    </label>
                     <input
                       type="email"
+                      name="from_email"
                       required
-                      value={form.email}
-                      onChange={e => setForm({ ...form, email: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primaryGreen bg-white text-sm"
+                      value={form.from_email}
+                      onChange={handleChange}
                       placeholder="you@example.com"
+                      className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primaryGreen bg-gray-50 text-sm"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-1.5">Type of Support</label>
+                  <label className="block text-sm font-semibold text-gray-700 mb-1.5">
+                    Type of Enquiry
+                  </label>
                   <select
-                    value={form.type}
-                    onChange={e => setForm({ ...form, type: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primaryGreen bg-white text-sm"
+                    name="support_type"
+                    value={form.support_type}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primaryGreen bg-gray-50 text-sm"
                   >
                     <option value="donation">Financial Donation</option>
                     <option value="partnership">Organizational Partnership</option>
@@ -191,26 +242,44 @@ export default function Support() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-1.5">Message</label>
+                  <label className="block text-sm font-semibold text-gray-700 mb-1.5">
+                    Message
+                  </label>
                   <textarea
                     rows={5}
+                    name="message"
                     required
                     value={form.message}
-                    onChange={e => setForm({ ...form, message: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primaryGreen bg-white text-sm resize-none"
+                    onChange={handleChange}
                     placeholder="Tell us how you'd like to support Gammun's mission..."
+                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primaryGreen bg-gray-50 text-sm resize-none"
                   />
                 </div>
 
+                {status === 'error' && (
+                  <div className="flex items-center gap-2 text-red-500 text-sm bg-red-50 border border-red-200 rounded-xl px-4 py-3">
+                    <FaExclamationCircle />
+                    Something went wrong. Please try again or email us directly.
+                  </div>
+                )}
+
                 <button
                   type="submit"
-                  className="w-full py-4 bg-primaryGreen text-white font-bold rounded-xl hover:bg-darkGreen transition-colors shadow-md text-base"
+                  disabled={status === 'sending'}
+                  className="w-full py-4 bg-primaryGreen text-white font-bold rounded-xl hover:bg-darkGreen transition-colors shadow-md text-base flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
                 >
-                  Send Message
+                  {status === 'sending' ? (
+                    <>
+                      <FaSpinner className="animate-spin" />
+                      Sending…
+                    </>
+                  ) : (
+                    'Send Message'
+                  )}
                 </button>
               </form>
-            </AnimSection>
-          )}
+            )}
+          </AnimSection>
         </div>
       </div>
 
